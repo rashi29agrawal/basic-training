@@ -1,19 +1,9 @@
 // Problem 1: Complete the secondLargest function which takes in an array of numbers in input and return the second biggest number in the array. (without using sort)?
 
 function secondLargest(array) {
-  var largest =0;
- for(let num of array){
-   if(largest<num){
-     largest=num;
-   }
- }
- var secondlargest =0;
- for(let num of array){
-   if(num!=largest && secondlargest<num){
-     secondlargest=num;
-   }
- }
- return secondlargest;
+    var max = Math.max.apply(null, array); // get the max of the array
+    array.splice(array.indexOf(max), 1); // remove max from the array
+    return Math.max.apply(null, array); 
 }
 
 // Problem 2: Complete the calculateFrequency function that takes lowercase string as input and returns frequency of all english alphabet. (using only array, no in-built function)
@@ -33,7 +23,29 @@ function calculateFrequency(string) {
    }
  }
  return object;
-}
+};
+
+//OR Alternate Solution
+
+function calculateFrequency(string) {
+     let object = {};
+    for(let i=0;i<string.length;i++)
+    {
+    if(string[i]>='a' && string[i]<='z')
+     {
+       if(object[string[i]]==undefined)
+      {
+        object[string[i]]=1;
+      }
+      else
+      {
+        object[string[i]]+=1;
+      } 
+     }
+    }
+      return object;
+};
+
 
 // Problem 3: Complete the flatten function that takes a JS Object, returns a JS Object in flatten format (compressed)
 function flatten(unflatObject) {
